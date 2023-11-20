@@ -1,0 +1,10 @@
+{% load static %}
+    {% for slides in slide %}
+    <div class="slides">
+        <img id="work" src="{{ slides.image.url }}" alt="{{ slides.title}}">
+    </div>
+    {% endfor %}
+<div class="slide-btn">
+    <a class="prev" onclick="plusSlides(-1)"> &#10094; </a>
+    <a class="next" onclick="plusSlides(1)"> &#10095; </a>
+</div>

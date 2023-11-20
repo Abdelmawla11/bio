@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>karina | portfolio</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}"/>
+  </head>
+<body>
+
+<div id="sidebar" class="sidebar">
+  <a class="btn active" href="#home">Home</a>
+  <a class="btn" href="#skills">about</a>
+  <a class="btn" href="#project">projects</a>
+  <a class="btn" href="#contac">Contact</a>
+</div>
+
+<div class="content">
+
+  <div id="home">
+    <img id="profile" src="{{ me.last.photo.url }}" alt="presonal photo"/>
+      <p>
+        {{ me.last.about }}
+      </p>
+  </div>
+
+  <div id="skills">
+    <div class="box">
+      <div class="box-1">
+        <img id="hobby" src="{% static 'myapp/image/hobby.svg' %}"/>
+        <h4>{{ hobby.last.bio }}</h4>
+      </div>
+      <div class="box-1">
+        <img id="hobby" src="{% static 'myapp/image/music.svg' %}" />
+        <h4>{{ hobby.last.music }}</h4>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="box-1">
+        <img id="hobby" src="{% static 'myapp/image/prsonal.svg' %}" />
+        <h4>{{ hobby.last.presonal }}</h4>
+      </div>
+      <div class="box-1">
+        <img id="hobby" src="{% static 'myapp/image/pin.svg' %}" />
+        <h4>{{ hobby.last.education }}</h4>
+      </div>
+    </div>
+  </div>
+ 
+  <div id="project">
+    <div id="slideshow">
+      <p class="pro">progect</p>
+      {% include 'myapp/slide.html' %}
+    </div>
+
+    <div class="video">
+      <p class="pro">{{ video.last.title }}</p>
+      <video width="80%" height="300" autoplay muted controls >
+        <source src="{{ video.last.video.url }}" type="video/mp4"/>
+      </video>
+    </div>
+  </div>
+  
+  <div id="contac">
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="name"/>
+      <input type="email" name="useremail" placeholder="email" required/>
+      <textarea name="usermessage" placeholder="massege" cols="60%" rows="10%"></textarea>
+      <button id="submit" type="submit">send</button>
+    </form>
+  </div>
+  <footer class="footer">
+    <a href="{{ link.last.linked }}">
+      <img class="contact" src="{% static 'myapp/image/linked.png' %}" alt="linked" />
+    </a>
+    <a href="{{ link.last.meta }}">
+      <img class="contact" src="{% static 'myapp/image/meta.png' %}" alt="meta" />
+    </a>
+    <a href="{{ link.last.telgram }}">
+      <img class="contact" src="{% static 'myapp/image/telgram.png' %}" alt="telgram" />
+    </a>
+  </footer>
+
+</div>
+
+<script src="{% static 'myapp/js/slide.js' %}"></script>
+<script src="{% static 'myapp/js/script.js' %}"></script>
+</body>
+</html>
